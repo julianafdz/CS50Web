@@ -1,0 +1,169 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Listing #{{ item.id }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="index_title">
+        <h1>{{ item.title }}</h1>
+    </div>
+    <hr>
+    <div class="listing_main_block">
+      <div class="block1_listing">
+          <div class="listing_img">
+              {% if item.img %}
+                  <img src="{{ item.img.url }}" class="img_box" alt="item_img">
+              {% else %}
+                  <img src="https://www.filestackapi.com/api/file/wUG6AFGSLyqg9wVpVPAJ" alt="item_img" class="img_box">
+              {% endif %}
+          </div>
+          {% if active %}
+              <div class="listing_post">
+                {% if not in_watch %}                
+                    <form action="{% url 'watchlist' %}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="item_id" value="{{ item.id }}">
+                      <input type="submit" class="btn btn-lg btn-primary" name="add_btn" value="Add to Watchlist">
+                    </form> 
+                {% else %}
+                    <form action="{% url 'watchlist' %}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="item_id" value="{{ item.id }}">
+                      <input type="submit" class="btn btn-lg btn-primary" name="remove_btn" value="Remove from Watchlist">
+                    </form>                     
+                {% endif %}
+              </div>
+          {% else %}
+              <div class="alert alert-danger" role="alert">
+                This listing is closed.
+              </div>
+              {% if winner %}
+                  {% if user.is_authenticated and request.user.id == winner.user.id %}
+                      <div class="alert alert-success" role="alert">
+                        Congratulations, you have won this auction!
+                      </div>
+                  {% else %}
+                      <div class="alert alert-success" role="alert">
+                        This auction has already won by someone. Better luck next time!
+                      </div>
+                  {% endif %}
+              {% else %}
+                  <div class="alert alert-danger" role="alert">
+                    This auction has been closed with no winners.
+                  </div>
+              {% endif %}           
+          {% endif %}
+        <div class="listing_table">
+          <h2 style="margin-left:10px">Details</h2>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">Post reference</th>
+                <td>{{ item.id }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Description</th>
+                <td>{{ item.description }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Listed by</th>
+                <td>{{ item.user }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Category</th>
+                <td>{{ item.category }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="block2_listing">
+        <h3>Price:</h3>
+        <h2>${{ item.start_bid }} USD</h2>
+        {% if active %}
+            <div class="bid_blk2">
+              <form action="{% url 'listing' item.id %}" method="post">
+                {% csrf_token %}
+                  <label for="newbid" class="form-label">{{ bidnum }} bid(s) so far. Your bid is the current bid.</label>
+                  <input id="newbid" name="newbid" type="text" placeholder="Bid">
+                  <input class="btn btn-primary" id="bid_btn" name="bid_btn" type="submit" value="Place Bid">
+              </form>
+              {% if success_bid == True %}
+                <div class="alert alert-success" role="alert">
+                  Your bid has been successfully submitted!
+                </div>
+              {% elif success_bid == False %}
+                <div class="alert alert-danger" role="alert">
+                  Can't process your bid, please enter a valid one.
+                </div>
+              {% endif %}
+            </div>
+        {% else %}
+            {% if winner %}
+              <div class="alert alert-success" role="alert">
+                Sold at ${{ winner.bid }}
+              </div>
+            {% endif %}
+        {% endif %} 
+      </div>
+      {% if active %}
+          {% if user.is_authenticated and request.user.id == item.user.id %}
+              <div class="block3_listing">
+                <form action="{% url 'listing' item.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="block3-post">
+                    <input class="btn btn-lg btn-danger" name="close_btn" type="submit" value="Close Auction">
+                  </div>
+                </form>
+              </div>
+          {% endif %}    
+      {% endif %}
+      <div class="block4_listing">
+        <h3>Comments</h3>
+        {% if active %}
+            <div>
+              <form action="{% url 'listing' item.id %}" method="post">
+                {% csrf_token %}
+                <textarea class="form-control" id="CommentTextarea" rows="2" name="comment" placeholder="Leave a comment" onkeyup="disbl(this)"></textarea>
+                <input class="btn btn-primary" name="cmnt_btn" id="cmnt_btn" type="submit" value="Post" disabled>
+                <script>
+                  function disbl(content)
+                        {
+                            var btn = document.querySelector('#cmnt_btn');
+                            if (content.value != '')
+                            {
+                                btn.disabled = false;
+                            }
+                            else
+                            {
+                                btn.disabled = true;
+                            }
+                        }
+                </script>
+              </form>
+            </div>
+        {% endif %}
+        <div class="comments">
+          {% if not comments %}
+              <div class="card">
+                <div class="card-body cmnt_card">
+                  No comments on this listing.
+                </div>
+              </div>
+          {% else %}
+              {% for comment in comments %}
+                  <div class="card">
+                    <div class="card-body cmnt_card">
+                      <b>{{ comment.user }}:</b>
+                      <p>{{ comment.comment }}</p>
+                    </div>
+                  </div>   
+              {% endfor %}
+          {% endif %} 
+        </div>     
+      </div>
+    </div>
+
+{% endblock %}

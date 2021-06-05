@@ -1,0 +1,15 @@
+textarea {
+    min-height: 400px;
+}
+
+.email {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    display: flex;
+    padding: 5px;
+}
+
+.email div {
+    float: left;
+    align-items: stretch;
+}

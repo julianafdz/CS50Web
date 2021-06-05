@@ -1,0 +1,31 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h3></h3>
+    <div class="card input-card" id="new-post">
+        <h6>New Post</h6>
+        <form action="{% url 'create_post' %}" method="POST" id="post-form">
+            {% csrf_token %}
+            <textarea class="form-control" id="post-submit" placeholder="What are you thinking?" name="post-submit"></textarea>
+            <input type="submit" class="btn btn-primary btn-sm" value="Post"/>
+        </form>
+    </div>
+    <div id="posts-view">
+    </div>
+    <div id="page_nav">
+        <ul class="pagination justify-content-end" id="page_nav_list">
+            <li class="page-item" id="previous">
+            </li>
+            <li class="page-item"><button class="page-link" id="page_number"></button></li>
+            <li class="page-item" id="next">
+            </li>
+        </ul>
+    </div>   
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/front_network.js' %}"></script>    
+{% endblock %}

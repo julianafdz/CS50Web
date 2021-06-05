@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" integrity="sha384-MI32KR77SgI9QAPUs+6R7leEOwtop70UsjEtFEezfKnMjXWx15NENsZpfDgq8m8S" crossorigin="anonymous">
+        <link href="{% static 'styles.css' %}" rel="stylesheet">
+        
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel" src="{% static 'disciplinapp.js' %}"></script>
+         
+    </head>
+    <body>
+        <nav class="main-nav navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'index' %}">DisciplinApp</a>
+            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                <ul class="navbar-nav navbar-uls">
+                    <li class="nav-item">
+                        <a class="nav-link" id="pomodoro" href="{% url 'methods' 'pom' %}">Pomodoro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="all" href="{% url 'methods' 'per' %}">Personalized Sessions</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="gtd" href="{% url 'methods' 'gtd' %}">Get Things Done</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="dit" href="{% url 'methods' 'dit' %}">Do It Tomorrow</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="dit" href="{% url 'mylist' %}">My Task List</a>
+                        </li>                      
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto navbar-uls">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><strong>{{ user.username }}</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>     
+            </div>
+            <button class="navbar-toggler" type="button" onclick="collapse_nav()" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <script>
+                function collapse_nav() {
+                    const nav = document.querySelector("#navbarToggleExternalContent");
+                    if(nav.className === "collapse navbar-collapse"){
+                        nav.className = "collapse container-fluid";
+                    }
+                    else{
+                        nav.className = "collapse navbar-collapse";
+                    }
+                }                      
+            </script>
+        </nav>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

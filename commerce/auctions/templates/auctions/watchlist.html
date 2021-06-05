@@ -1,0 +1,58 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Watchlist
+{% endblock %}
+
+{% block body %}
+
+    <div class="auc_container">    
+    <div class="index_title">
+        <h2>Hello {{ request.user.username }}!</h2>
+    </div>
+    <hr>
+    <div class="container">
+      <p class="watch_title">Your Watchlist:</p>
+      {% if not items %}
+          <p class="portf_txt">You have not listings in your watchlist.</p>
+          <br>
+      {% else %}
+          <table class="table table-striped watch_table">
+            <thead>
+              <tr>
+                <th scope="col">Listing #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Added in</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in items %}
+                  <tr>
+                    <th scope="row">{{ item.item.id }}</th>
+                    <td><a href="{% url 'listing' item.item.id %}">{{ item.item.title }}</a></td>
+                    <td>{{ item.dt_hr }}</td>
+                    <td>
+                      {% if item.item.is_active == True %}
+                      <p style="color: green;">Open</p>
+                      {% else %}
+                      <p style="color: red;">Closed</p>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <form action="{% url 'watchlist' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value="{{ item.item.id }}">
+                        <input class="btn btn-sm btn-danger" type="submit" name="remove_btn_watch" value="Remove">
+                      </form>
+                    </td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+      {% endif %}
+    </div>
+    
+{% endblock %}

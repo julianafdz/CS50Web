@@ -1,0 +1,100 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Create Listing
+{% endblock %}
+
+{% block body %}
+
+    <div class="auc_container">    
+      <div class="index_title">
+          <h2>Create a listing</h2>
+      </div>
+      <hr>
+      <div class="container">
+        <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if invalid %}
+              <div class="mb-3 col-sm-8">
+                <label for="exampleFormControlTextarea1" class="form-label">Enter a title for your product*</label>
+                <input type="text" autocomplete="off" class="form-control is-invalid" aria-label="Amount" name="title" placeholder="Your product's title">
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                  Please enter a title for your product
+                </div>
+              </div>
+          {% else %}
+              <div class="mb-3 col-sm-8">
+                <label for="exampleFormControlTextarea1" class="form-label">Enter a title for your product*</label>
+                <input type="text" autocomplete="off" class="form-control" aria-label="Amount" name="title" placeholder="Your product's name">
+              </div>
+          {% endif %}
+          <div class="mb-3 col-md-8">
+            <label for="file-upload" class="form-label">Post a picture of your product</label>
+            <input name="file" class="form-control-file" id="file-upload" type="file"/>
+          </div>
+          <div class="mb-3 col-sm-8">
+            <label for="exampleFormControlTextarea1" class="form-label">Post a description of your product</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="description"></textarea>
+          </div>
+          {% if invalid %}
+              <div class="mb-3 col-sm-8">
+                <label for="exampleFormControlTextarea1" class="form-label">Starting bid*</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" autocomplete="off" class="form-control is-invalid" aria-label="Amount" name="start_bid">
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please enter the starting bid for your product
+                  </div>
+                </div>
+              </div>
+          {% else %}
+              <div class="mb-3 col-sm-8">
+                <label for="exampleFormControlTextarea1" class="form-label">Starting bid*</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" autocomplete="off" class="form-control" aria-label="Amount" name="start_bid">
+                </div>
+              </div>
+          {% endif %}
+          {% if invalid %}
+              <div class="form-group col-md-8">
+                <label for="exampleFormControlSelect">Select a category for your product*</label>
+                <select name="category" class="form-control is-invalid">
+                  <option selected>Categories</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="toys">Toys</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="home">Home</option>
+                  <option value="vehicles">Vehicles</option>
+                </select>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                  Please select a category for your product
+                </div>
+              </div>
+          {% else %}
+              <div class="form-group col-md-8">
+                <label for="exampleFormControlSelect">Select a category for your product*</label>
+                <select name="category" class="form-control">
+                  <option selected>Categories</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="toys">Toys</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="home">Home</option>
+                  <option value="vehicles">Vehicles</option>
+                </select>
+              </div>
+          {% endif %}
+          <hr>
+          <div class="mb-3 col-sm-8">
+          <p style="color:red">(*) Obligatory field</p>
+          <button class="btn btn-primary" type="submit">Post</button>
+          </div>
+        </form>
+      </div>
+    <div>
+
+{% endblock %}

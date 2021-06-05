@@ -1,0 +1,51 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    {% if category %}
+        Categories: {{ category }}
+    {% else %}
+        Homepage
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+   
+    <div class="auc_container">
+        {% if category %}
+            <div class="index_title"><h2>{{ category }}</h2></div>
+        {% else %}
+            <div class="index_title"><h2>Active Listings</h2></div>
+        {% endif %}
+        <hr>      
+        <div class="container-fluid" style="text-align:center;">
+            {% if not auctions %}
+                <p>There are not active listings at this moment</p>
+            {% else %}
+                {% for auction in auctions %}
+                    <div class="card bg-light mb-3 auc_card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                {% if auction.img %}  
+                                    <img src="{{ auction.img.url }}" alt="auc_img" class="card_img">
+                                {% else %}
+                                    <img src="https://www.filestackapi.com/api/file/wUG6AFGSLyqg9wVpVPAJ" alt="auc_img" class="card_img">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body" style="text-align:left">
+                                <h5 class="card-title"><a href="/listing/{{ auction.id }}">{{ auction.title }}</a></h5>
+                                <p class="card-text">${{ auction.start_bid }} USD</p>
+                                {% if auction.description %}
+                                <p class="card-text">{{ auction.description }}</p>
+                                {% endif %}
+                                <p class="card-text" style="color:grey"><small>Created {{ auction.dt_hr }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    
+{% endblock %}

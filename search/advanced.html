@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-light adv_nav">
+            <div class="container col-lg-8 col-sm-6">
+            <a class="navbar-brand" href="/index.html"><span class="blue logo">G</span><span class="red logo">o</span><span class="yellow logo">o</span><span class="blue logo">g</span><span class="green logo">l</span></span><span class="red logo">e</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+            <div class="container col-md-4 col-sm-6 shortbar">
+                <ul class="navbar-nav">
+                    <p class="txt_link">Go back to</p>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/index.html">Google Search</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            <h1 id="advancedt1">Advanced Search</h1>
+            <hr>
+        </div>
+        <div class="adv_box">
+            <div class="row">  
+                <div class="col-lg-7 col-sm-12 fieldbox1">          
+                    <p id="advancedt2">Find pages with...</p>
+                    <form action="https://www.google.com/search">
+                        <div class="mb-3 row">
+                            <label for="inputtxt1" class="col-sm-3 col-form-label">all these words:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm inputtxt" id="inputtxt1" name="as_q">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputtxt2" class="col-sm-3 col-form-label">this exact word or phrase:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm inputtxt" id="inputtxt2" name="as_epq">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputtxt3" class="col-sm-3 col-form-label">any of these words:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm inputtxt" id="inputtxt3" name="as_oq">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputtxt4" class="col-sm-3 col-form-label">none of these words:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm inputtxt" id="inputtxt4" name="as_eq">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="btn btn-primary mb-3 btn-sm adv_btn" type="submit" value="Advanced Search">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 col-sm-0 fieldbox2">
+                    <p id="advancedt3">To do this in the search box.</p>
+                    <div class="mb-3 row labelbox_size">
+                        <label for="inputtxt1" class="col-form-label">Type the important words: tri-colour rat terrier</label>
+                    </div>
+                    <div class="mb-3 row labelbox_size">
+                        <label for="inputtxt2" class="col-form-label">Put exact words in quotes: "rat terrier"</label>
+                    </div>
+                    <div class="mb-3 row labelbox_size">
+                        <label for="inputtxt3" class="col-form-label">Type OR between all the words you want: miniature OR standard</label>
+                    </div>
+                    <div class="mb-3 row labelbox_size">
+                        <label for="inputtxt4" class="col-form-label">Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"</label>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>

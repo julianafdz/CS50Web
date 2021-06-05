@@ -1,0 +1,62 @@
+.body {
+    padding: 10px;
+}
+
+.input-card {
+    padding: 15px;
+}
+
+#post-form input {
+    margin-top: 3px;
+}
+
+.card_username {
+    color: black;
+}
+
+.edit_btn {
+    border: none;
+    padding-left: 0px;
+    color: dodgerblue;
+    font-weight: 600;
+}
+
+.edit_btn:hover {
+    background-color: white;
+    color: #0a60b1;
+}
+
+.likes_counter {
+    font-style: normal;
+    font-size: 15px;
+    padding-left: 3px;    
+}
+
+.back_btn {
+    color: #125da8;
+    cursor: pointer;
+}
+
+#hidden_info {
+    display: none;
+}
+
+.profile-head {
+    width: 100%;
+}
+
+.profile-head li {
+    margin: auto;
+    text-align: center;
+    font-weight: 600;
+    font-size: larger;    
+}
+
+.ufllw:hover {
+    background-color: white;
+    color: dodgerblue;
+}
+
+#page_nav {
+    margin-top: 20px;
+}

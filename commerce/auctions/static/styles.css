@@ -1,0 +1,114 @@
+.nav1_div {    
+    float: right;
+}
+
+.nav-item {
+	margin: auto;
+}
+
+.auc_container {
+    margin: 20px;
+}
+
+.index_title {
+    margin: 15px;
+}
+
+.auc_card {
+    margin: auto;
+    max-width: 900px;
+}
+
+.card_img {
+    height: 200px;
+    width: 300px;
+}
+
+.card-body {
+    margin-left: 30px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.watch_title {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.watch_table th, td {
+    text-align: center;
+}
+
+.listing_main_block {
+    margin: 10px 80px 0px 80px;
+    padding: 10px;
+}
+
+.block1_listing {
+    float: left;
+    width: 70%;
+    height: 930px;
+}
+
+.block2_listing {
+    float: left;
+    width: 30%;
+    height: 520px;
+    padding: 100px 0px 0px 20px;
+}
+
+.bid_blk2 {
+    padding-top: 40px;
+}
+
+.block3_listing {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.block4_listing {
+    float: left;
+    width: 70%;
+    margin-top: 20px;
+}
+
+.listing_img {
+    width: 90%;
+    height: 500px;
+    text-align: center;
+}
+
+.img_box
+{
+    height: 500px;
+    width: 700px;
+}
+
+.listing_post {
+    width: 90%;
+    height: 50px;
+    margin: 20px 0px 30px 0px;
+}
+
+.listing_table {
+    width: 90%;
+    height: 390px;
+    text-align: left;
+}
+
+#cmnt_btn {
+    margin-top: 7px;
+    padding: 5px 25px 5px 25px;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.cmnt_card {
+    margin: 5px 10px 0px 15px;
+    padding: 0px;
+}

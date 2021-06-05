@@ -1,0 +1,47 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <span id="hidden_info">{{ id }}</span>
+    {% csrf_token %}
+
+    <nav class="profile-nav navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}"><i class="fa fa-arrow-left back_profile"></i></a>
+    </nav>
+    <div class="navbar navbar-expand-lg">
+        <ul class="navbar-nav profile-head">
+            <li class="nav-item" id="username">{{ username }}</li>
+            <li class="nav-item" id="publications">{{ posts }}<br>Posts</li>
+            <li class="nav-item" id="followers">{{ followers }}<br>Followers</li>
+            <li class="nav-item" id="following">{{ following }}<br>Following</li>
+            {% if act_user_id != id and act_user_id != None %}
+                <li class="followed nav-item">
+                    <button
+                        {% if followed %}
+                            class="btn btn-outline-primary ufllw" id="follow_btn">Unfollow                        
+                        {% else %}
+                            class="btn btn-primary fllw" id="follow_btn">Follow
+                        {% endif %}
+                    </button>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div id="posts-view">
+    </div>
+    <div id="page_nav">
+        <ul class="pagination justify-content-end" id="page_nav_list">
+            <li class="page-item" id="previous">
+            </li>
+            <li class="page-item"><button class="page-link" id="page_number"></button></li>
+            <li class="page-item" id="next">
+            </li>
+        </ul>
+    </div>   
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/front_network.js' %}"></script>    
+{% endblock %}

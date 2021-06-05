@@ -1,0 +1,2 @@
+for the ImageField in models.py you have to install Pillow
+$ python -m pip install Pillow

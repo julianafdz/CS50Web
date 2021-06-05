@@ -1,0 +1,23 @@
+{% extends "disciplinapp/layout.html" %}
+
+{% block title %}
+    Chronometer
+{% endblock %}
+
+{% load static %} 
+
+{% block body %}
+
+    <div id="spotify">
+        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWEJlAGA9gs0" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    <div class="counter">
+        <div id="crono">
+            <div id="sphere">
+            </div>
+        </div>
+        <div id="nums">
+        </div>       
+    </div>
+
+{% endblock %}
