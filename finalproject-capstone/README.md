@@ -104,8 +104,4 @@ In counter.html i added a Spotify tag provided by Spotify for developers, which 
 
 ## Requirements of the project
 
-I think my project is distinct from other projects in this course because, despite i use some elements that i've learned during the course, like make and update lists and asociate model values in the database, i found my own way to apply this elements in an application that I conceived in my mind, not even using as reference any other app that i have seen on the web before. I made this app precisely because, as far as i know, there are not many apps about the ussage of study methods or that help users to set up a timer for their study sessions.
-
-Also i think my app has the complexity required for the final project, because i not just have to use all the previous knowlege obtained during the course, but i have to research a lot more by my own, learn to user React more in deept, work with new propeties in CSS and achieve a project that work simultaneously with frontend and backend laguages.
-
-Finally, as i mentioned before, other requirements like having at least one model, using Django and JavaScript, and been mobile-responsive are met in the app.
+Requirements for the final project like having at least one model, using Django and JavaScript, and been mobile-responsive are met in the app.
